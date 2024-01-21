@@ -1,0 +1,1378 @@
+definitions:
+  cloudresourcemanager.AuditConfig:
+    properties:
+      auditLogConfigs:
+        description: |-
+          AuditLogConfigs: The configuration for logging of each type of
+          permission.
+        items:
+          $ref: '#/definitions/cloudresourcemanager.AuditLogConfig'
+        type: array
+      service:
+        description: |-
+          Service: Specifies a service that will be enabled for audit logging.
+          For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
+          `allServices` is a special value that covers all services.
+        type: string
+    type: object
+  cloudresourcemanager.AuditLogConfig:
+    properties:
+      exemptedMembers:
+        description: |-
+          ExemptedMembers: Specifies the identities that do not cause logging
+          for this type of permission. Follows the same format of
+          Binding.members.
+        items:
+          type: string
+        type: array
+      logType:
+        description: |-
+          LogType: The log type that this config enables.
+
+          Possible values:
+            "LOG_TYPE_UNSPECIFIED" - Default case. Should never be this.
+            "ADMIN_READ" - Admin reads. Example: CloudIAM getIamPolicy
+            "DATA_WRITE" - Data writes. Example: CloudSQL Users create
+            "DATA_READ" - Data reads. Example: CloudSQL Users list
+        type: string
+    type: object
+  cloudresourcemanager.Binding:
+    properties:
+      condition:
+        allOf:
+        - $ref: '#/definitions/cloudresourcemanager.Expr'
+        description: |-
+          Condition: The condition that is associated with this binding. If the
+          condition evaluates to `true`, then this binding applies to the
+          current request. If the condition evaluates to `false`, then this
+          binding does not apply to the current request. However, a different
+          role binding might grant the same role to one or more of the
+          principals in this binding. To learn which resources support
+          conditions in their IAM policies, see the IAM documentation
+          (https://cloud.google.com/iam/help/conditions/resource-policies).
+      members:
+        description: |-
+          Members: Specifies the principals requesting access for a Google
+          Cloud resource. `members` can have the following values: *
+          `allUsers`: A special identifier that represents anyone who is on the
+          internet; with or without a Google account. *
+          `allAuthenticatedUsers`: A special identifier that represents anyone
+          who is authenticated with a Google account or a service account. Does
+          not include identities that come from external identity providers
+          (IdPs) through identity federation. * `user:{emailid}`: An email
+          address that represents a specific Google account. For example,
+          `alice@example.com` . * `serviceAccount:{emailid}`: An email address
+          that represents a Google service account. For example,
+          `my-other-app@appspot.gserviceaccount.com`. *
+          `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`:
+           An identifier for a Kubernetes service account
+          (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts).
+          For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`.
+          * `group:{emailid}`: An email address that represents a Google group.
+          For example, `admins@example.com`. * `domain:{domain}`: The G Suite
+          domain (primary) that represents all the users of that domain. For
+          example, `google.com` or `example.com`. *
+          `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus
+          unique identifier) representing a user that has been recently
+          deleted. For example, `alice@example.com?uid=123456789012345678901`.
+          If the user is recovered, this value reverts to `user:{emailid}` and
+          the recovered user retains the role in the binding. *
+          `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address
+          (plus unique identifier) representing a service account that has been
+          recently deleted. For example,
+          `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.
+          If the service account is undeleted, this value reverts to
+          `serviceAccount:{emailid}` and the undeleted service account retains
+          the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`:
+          An email address (plus unique identifier) representing a Google group
+          that has been recently deleted. For example,
+          `admins@example.com?uid=123456789012345678901`. If the group is
+          recovered, this value reverts to `group:{emailid}` and the recovered
+          group retains the role in the binding.
+        items:
+          type: string
+        type: array
+      role:
+        description: |-
+          Role: Role that is assigned to the list of `members`, or principals.
+          For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+        type: string
+    type: object
+  cloudresourcemanager.Expr:
+    properties:
+      description:
+        description: |-
+          Description: Optional. Description of the expression. This is a
+          longer text which describes the expression, e.g. when hovered over it
+          in a UI.
+        type: string
+      expression:
+        description: |-
+          Expression: Textual representation of an expression in Common
+          Expression Language syntax.
+        type: string
+      location:
+        description: |-
+          Location: Optional. String indicating the location of the expression
+          for error reporting, e.g. a file name and a position in the file.
+        type: string
+      title:
+        description: |-
+          Title: Optional. Title for the expression, i.e. a short string
+          describing its purpose. This can be used e.g. in UIs which allow to
+          enter the expression.
+        type: string
+    type: object
+  cloudresourcemanager.Policy:
+    properties:
+      auditConfigs:
+        description: |-
+          AuditConfigs: Specifies cloud audit logging configuration for this
+          policy.
+        items:
+          $ref: '#/definitions/cloudresourcemanager.AuditConfig'
+        type: array
+      bindings:
+        description: |-
+          Bindings: Associates a list of `members`, or principals, with a
+          `role`. Optionally, may specify a `condition` that determines how and
+          when the `bindings` are applied. Each of the `bindings` must contain
+          at least one principal. The `bindings` in a `Policy` can refer to up
+          to 1,500 principals; up to 250 of these principals can be Google
+          groups. Each occurrence of a principal counts towards these limits.
+          For example, if the `bindings` grant 50 different roles to
+          `user:alice@example.com`, and not to any other principal, then you
+          can add another 1,450 principals to the `bindings` in the `Policy`.
+        items:
+          $ref: '#/definitions/cloudresourcemanager.Binding'
+        type: array
+      etag:
+        description: |-
+          Etag: `etag` is used for optimistic concurrency control as a way to
+          help prevent simultaneous updates of a policy from overwriting each
+          other. It is strongly suggested that systems make use of the `etag`
+          in the read-modify-write cycle to perform policy updates in order to
+          avoid race conditions: An `etag` is returned in the response to
+          `getIamPolicy`, and systems are expected to put that etag in the
+          request to `setIamPolicy` to ensure that their change will be applied
+          to the same version of the policy. **Important:** If you use IAM
+          Conditions, you must include the `etag` field whenever you call
+          `setIamPolicy`. If you omit this field, then IAM allows you to
+          overwrite a version `3` policy with a version `1` policy, and all of
+          the conditions in the version `3` policy are lost.
+        type: string
+      version:
+        description: |-
+          Version: Specifies the format of the policy. Valid values are `0`,
+          `1`, and `3`. Requests that specify an invalid value are rejected.
+          Any operation that affects conditional role bindings must specify
+          version `3`. This requirement applies to the following operations: *
+          Getting a policy that includes a conditional role binding * Adding a
+          conditional role binding to a policy * Changing a conditional role
+          binding in a policy * Removing any role binding, with or without a
+          condition, from a policy that includes conditions **Important:** If
+          you use IAM Conditions, you must include the `etag` field whenever
+          you call `setIamPolicy`. If you omit this field, then IAM allows you
+          to overwrite a version `3` policy with a version `1` policy, and all
+          of the conditions in the version `3` policy are lost. If a policy
+          does not include any conditions, operations on that policy may
+          specify any valid version or leave the field unset. To learn which
+          resources support conditions in their IAM policies, see the IAM
+          documentation
+          (https://cloud.google.com/iam/help/conditions/resource-policies).
+        type: integer
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_auth.AttachMfaDeviceRequest:
+    properties:
+      auth_session:
+        type: string
+      email:
+        type: string
+      totp_code:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_auth.CompleteMfaSignInRequest:
+    properties:
+      auth_session:
+        type: string
+      email:
+        type: string
+      totp_code:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_auth.GetMFADeviceCode:
+    properties:
+      auth_session:
+        type: string
+      email:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_auth.LoginProcessRequest:
+    properties:
+      email:
+        example: john.doe@example.com
+        type: string
+      password:
+        example: "11111111"
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_auth.ResendConfirmationCodeRequest:
+    properties:
+      email:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_auth.VerifyUserRequest:
+    properties:
+      email:
+        type: string
+      verification_code:
+        type: string
+    required:
+    - email
+    - verification_code
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreatePolicyRequest:
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreateRoleRequest:
+    properties:
+      name:
+        type: string
+      trust_policy:
+        additionalProperties: true
+        type: object
+    required:
+    - name
+    - trust_policy
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateGroupRequest:
+    properties:
+      id:
+        type: string
+      new_name:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdatePolicyRequest:
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateRoleRequest:
+    properties:
+      name:
+        type: string
+      new_name:
+        type: string
+      trust_policy:
+        additionalProperties: true
+        type: object
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.ActionRoleRequest:
+    properties:
+      name:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateRoleRequest:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      permissions:
+        items:
+          type: string
+        type: array
+      stage:
+        type: string
+      title:
+        type: string
+    required:
+    - description
+    - name
+    - permissions
+    - title
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateServiceAccountRequest:
+    properties:
+      description:
+        type: string
+      display_name:
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - display_name
+    - name
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.SetIamPolicyRequest:
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.UpdateRoleRequest:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      permissions:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+    required:
+    - description
+    - name
+    - permissions
+    - title
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group:
+    properties:
+      arn:
+        type: string
+      created_date:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      path:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse:
+    properties:
+      policy_id:
+        type: string
+      policy_name:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse:
+    properties:
+      role_arn:
+        type: string
+      role_id:
+        type: string
+      role_name:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse:
+    properties:
+      arn:
+        type: string
+      id:
+        type: string
+      username:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails:
+    properties:
+      description:
+        type: string
+      etag:
+        type: string
+      id:
+        type: string
+      members:
+        items:
+          properties:
+            email:
+              type: string
+          type: object
+        type: array
+      name:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      permissions:
+        items:
+          type: string
+        type: array
+      stage:
+        type: string
+      title:
+        type: string
+    type: object
+  gitea_pcp-inariam_inariam_core_services_api_responses_gcp.ServiceAccountDetails:
+    properties:
+      description:
+        type: string
+      disabled:
+        type: boolean
+      displayName:
+        type: string
+      etag:
+        type: string
+      name:
+        type: string
+      project_id:
+        type: string
+      uniqueId:
+        type: string
+    type: object
+  iam.CreateGroupRequest:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  iam.ServiceAccount:
+    properties:
+      description:
+        description: |-
+          Description: Optional. A user-specified, human-readable description
+          of the service account. The maximum length is 256 UTF-8 bytes.
+        type: string
+      disabled:
+        description: 'Disabled: Output only. Whether the service account is disabled.'
+        type: boolean
+      displayName:
+        description: |-
+          DisplayName: Optional. A user-specified, human-readable name for the
+          service account. The maximum length is 100 UTF-8 bytes.
+        type: string
+      email:
+        description: 'Email: Output only. The email address of the service account.'
+        type: string
+      etag:
+        description: 'Etag: Deprecated. Do not use.'
+        type: string
+      name:
+        description: |-
+          Name: The resource name of the service account. Use one of the
+          following formats: *
+          `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}` *
+          `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}` As an
+          alternative, you can use the `-` wildcard character instead of the
+          project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS}` *
+          `projects/-/serviceAccounts/{UNIQUE_ID}` When possible, avoid using
+          the `-` wildcard character, because it can cause response messages to
+          contain misleading error codes. For example, if you try to access the
+          service account `projects/-/serviceAccounts/fake@example.com`, which
+          does not exist, the response contains an HTTP `403 Forbidden` error
+          instead of a `404 Not Found` error.
+        type: string
+      oauth2ClientId:
+        description: |-
+          Oauth2ClientId: Output only. The OAuth 2.0 client ID for the service
+          account.
+        type: string
+      projectId:
+        description: |-
+          ProjectId: Output only. The ID of the project that owns the service
+          account.
+        type: string
+      uniqueId:
+        description: |-
+          UniqueId: Output only. The unique, stable numeric ID for the service
+          account. Each service account retains its unique ID even if you
+          delete the service account. For example, if you delete a service
+          account, then create a new service account with the same name, the
+          new service account has a different unique ID than the deleted
+          service account.
+        type: string
+    type: object
+  iam.UpdateGroupRequest:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  responses.CompleteSignInResponse:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
+    type: object
+  responses.Data:
+    properties:
+      message:
+        type: string
+    type: object
+  responses.Error:
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
+    type: object
+  responses.LoginResponse:
+    properties:
+      auth_session:
+        type: string
+      challenge_name:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /auth/activate-mfa:
+    post:
+      consumes:
+      - application/json
+      description: Perform user login
+      operationId: activate-code
+      parameters:
+      - description: User's credentials
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.GetMFADeviceCode'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: String response here
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/responses.Error'
+      summary: Activate MFA For user
+      tags:
+      - User Actions
+  /auth/confirm-mfa:
+    post:
+      consumes:
+      - application/json
+      description: Perform user login
+      operationId: confirm-code
+      parameters:
+      - description: User's credentials
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.AttachMfaDeviceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: String response here
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/responses.Error'
+      summary: Confirm MFA Code
+      tags:
+      - User Actions
+  /auth/confirmation-resend:
+    post:
+      consumes:
+      - application/json
+      description: Resend confirmation code to user
+      operationId: resend-confirmation-code
+      parameters:
+      - description: User's credentials
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.ResendConfirmationCodeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Data'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/responses.Error'
+      summary: Resender user's email
+      tags:
+      - User Actions
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Perform user login
+      operationId: user-login
+      parameters:
+      - description: User's credentials
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.LoginProcessRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.LoginResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/responses.Error'
+      summary: Authenticate a user
+      tags:
+      - User Actions
+  /auth/signin:
+    post:
+      consumes:
+      - application/json
+      description: Complete signin flow and receive accessToken and
+      operationId: complete-signin-flow
+      parameters:
+      - description: User's credentials
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.CompleteMfaSignInRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.CompleteSignInResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/responses.Error'
+      summary: Complete signin flow
+      tags:
+      - User Actions
+  /auth/verify-user:
+    post:
+      consumes:
+      - application/json
+      description: Verifying a user email with the code sent to him in the email
+      operationId: verify-user
+      parameters:
+      - description: User's credentials
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.VerifyUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/responses.Error'
+      summary: Verify a user email
+      tags:
+      - User Actions
+  /aws/iam/groups:
+    get:
+      description: Get a list of AWS IAM groups
+      operationId: aws-list-groups
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: Group names separated by newline
+          schema:
+            type: string
+      summary: AWS List Groups
+    post:
+      consumes:
+      - application/json
+      description: Create a new AWS IAM group
+      operationId: create-aws-group
+      parameters:
+      - description: Group details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/iam.CreateGroupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group'
+      summary: Create AWS Group
+  /aws/iam/groups/{groupName}:
+    delete:
+      description: Delete an AWS IAM group by group name
+      operationId: delete-aws-group
+      parameters:
+      - description: Group Name
+        in: path
+        name: groupName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: AWS Group deleted successfully
+          schema:
+            type: string
+      summary: Delete AWS Group
+    get:
+      description: Get AWS IAM group details by group name
+      operationId: get-aws-group-by-name
+      parameters:
+      - description: Group Name
+        in: path
+        name: groupName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group'
+      summary: Get AWS Group by Name
+    put:
+      consumes:
+      - application/json
+      description: Update an existing AWS IAM group's name
+      operationId: update-aws-group
+      parameters:
+      - description: Group Name
+        in: path
+        name: groupName
+        required: true
+        type: string
+      - description: New group details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateGroupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group'
+      summary: Update AWS Group
+  /gcp/iam/groups:
+    get:
+      description: Retrieves a list of IAM GCP groups using the Google Cloud IAM service.
+      operationId: gcp-list-groups
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails'
+              type: array
+            type: array
+      summary: Get a list of IAM GCP groups
+    post:
+      consumes:
+      - application/json
+      description: Create a new GCP IAM group.
+      operationId: create-group
+      parameters:
+      - description: Group details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/iam.CreateGroupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails'
+      summary: Create GCP Group
+    put:
+      consumes:
+      - application/json
+      description: Update an existing IAM group
+      operationId: update-group
+      parameters:
+      - description: Updated group details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/iam.UpdateGroupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails'
+      summary: Update Group
+  /gcp/iam/groups/{groupName}:
+    delete:
+      description: Delete an IAM group by group name
+      operationId: delete-group
+      parameters:
+      - description: Group Name
+        in: path
+        name: groupName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Group deleted successfully
+          schema:
+            type: string
+      summary: Delete Group
+    get:
+      description: Get gcp-IAM-group details by group name
+      operationId: get-gcp-group-by-name
+      parameters:
+      - description: Group Name
+        in: path
+        name: groupName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails'
+      summary: Get gcp-Group by Name
+  /gcp/iam/policy:
+    delete:
+      description: Delete IAM policy for a project
+      operationId: delete-iam-policy
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: IAM policy deleted successfully
+          schema:
+            type: string
+      summary: Delete IAM Policy
+    get:
+      description: Get IAM policy for a project
+      operationId: gcp-one-policy
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/cloudresourcemanager.Policy'
+      summary: Get IAM Policy
+    put:
+      consumes:
+      - application/json
+      description: Set IAM policy for a project
+      operationId: set-iam-policy
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectID
+        required: true
+        type: string
+      - description: IAM policy details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.SetIamPolicyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: IAM policy set successfully
+          schema:
+            type: string
+      summary: Set IAM Policy
+  /gcp/roles:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an IAM role for the project
+      operationId: gcp-delete-role
+      parameters:
+      - description: IAM role name
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.ActionRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: bool
+      summary: Delete an IAM Role
+    get:
+      consumes:
+      - application/json
+      description: List all IAM roles the project
+      operationId: gcp-list-role
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse'
+              type: array
+            type: array
+      summary: List IAM Roles
+    post:
+      consumes:
+      - application/json
+      description: Create an IAM role for the project
+      operationId: gcp-create-role
+      parameters:
+      - description: IAM role details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse'
+      summary: Create an IAM Role
+    put:
+      consumes:
+      - application/json
+      description: Update an IAM role for the project
+      operationId: gcp-update-role
+      parameters:
+      - description: IAM role details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.UpdateRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse'
+      summary: Update an IAM Role
+  /gcp/roles/{name}:
+    get:
+      consumes:
+      - application/json
+      description: Get an IAM role of the project
+      operationId: gcp-one-role
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse'
+      summary: Get an IAM Role
+  /health:
+    get:
+      description: Verify if the server is running
+      operationId: healthcheck
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.Error'
+      summary: Health check endpoint for the API
+      tags:
+      - Misc
+  /policies:
+    get:
+      description: Get a list of IAM policies
+      operationId: list-policies
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse'
+            type: array
+      summary: List Policies
+    post:
+      consumes:
+      - application/json
+      description: Create a new IAM policy
+      operationId: create-policy
+      parameters:
+      - description: Policy details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreatePolicyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse'
+      summary: Create Policy
+    put:
+      consumes:
+      - application/json
+      description: Update an existing IAM policy
+      operationId: update-policy
+      parameters:
+      - description: Updated policy details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdatePolicyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse'
+      summary: Update Policy
+  /policies/{policyName}:
+    delete:
+      description: Delete an IAM policy by policy name
+      operationId: delete-policy
+      parameters:
+      - description: Policy Name
+        in: path
+        name: policyName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Policy deleted successfully
+          schema:
+            type: string
+      summary: Delete Policy
+    get:
+      description: Get IAM policy details by policy name
+      operationId: get-policy-by-name
+      parameters:
+      - description: Policy Name
+        in: path
+        name: policyName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse'
+      summary: Get Policy by Name
+  /roles:
+    get:
+      description: Get a list of IAM roles
+      operationId: list-roles
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse'
+            type: array
+      summary: List Roles
+    post:
+      consumes:
+      - application/json
+      description: Create a new IAM role
+      operationId: create-role
+      parameters:
+      - description: Role Name
+        in: body
+        name: roleName
+        required: true
+        schema:
+          type: string
+      - description: Trust Policy
+        in: body
+        name: trustPolicy
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreateRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse'
+      summary: Create Role
+    put:
+      consumes:
+      - application/json
+      description: Update an existing IAM role's trust policy
+      operationId: update-role
+      parameters:
+      - description: Role Name
+        in: body
+        name: roleName
+        required: true
+        schema:
+          type: string
+      - description: Updated Trust Policy
+        in: body
+        name: trustPolicy
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse'
+      summary: Update Role
+  /roles/{roleName}:
+    delete:
+      description: Delete an IAM role by role name
+      operationId: delete-role
+      parameters:
+      - description: Role Name
+        in: path
+        name: roleName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Role deleted successfully
+          schema:
+            type: string
+      summary: Delete Role
+    get:
+      description: Get IAM role details by role name
+      operationId: get-role-by-name
+      parameters:
+      - description: Role Name
+        in: path
+        name: roleName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse'
+      summary: Get Role by Name
+  /service-accounts:
+    post:
+      consumes:
+      - application/json
+      description: Create a new IAM service account
+      operationId: create-service-account
+      parameters:
+      - description: Service account details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateServiceAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/iam.ServiceAccount'
+      summary: Create Service Account
+  /service-accounts/{project_id}:
+    delete:
+      description: Get a list of IAM service accounts
+      operationId: list-service-accounts
+      parameters:
+      - description: Project ID
+        in: path
+        name: project_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.ServiceAccountDetails'
+            type: array
+      summary: Delete Service Account
+    get:
+      description: Get a list of IAM service accounts
+      operationId: list-service-accounts
+      parameters:
+      - description: Project ID
+        in: path
+        name: project_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.ServiceAccountDetails'
+            type: array
+      summary: Get Service Accounts
+  /users:
+    get:
+      description: Get a list of IAM users
+      operationId: list-users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse'
+            type: array
+      summary: List Users
+    post:
+      consumes:
+      - application/json
+      description: Create a new IAM user
+      operationId: create-user
+      parameters:
+      - description: Username
+        in: body
+        name: username
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse'
+      summary: Create User
+    put:
+      consumes:
+      - application/json
+      description: Update an existing IAM user's username
+      operationId: update-user
+      parameters:
+      - description: Current Username
+        in: body
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: New Username
+        in: body
+        name: newUsername
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: IAM user updated successfully
+          schema:
+            type: string
+      summary: Update User
+  /users/{id}:
+    delete:
+      description: Delete an IAM user by username
+      operationId: delete-user
+      parameters:
+      - description: Username
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: IAM user deleted successfully
+          schema:
+            type: string
+      summary: Delete User
+    get:
+      description: Get IAM user details by username
+      operationId: get-user-by-id
+      parameters:
+      - description: Username
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse'
+      summary: Get User by ID
+swagger: "2.0"

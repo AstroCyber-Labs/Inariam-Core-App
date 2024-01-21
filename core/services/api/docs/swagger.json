@@ -1,0 +1,1860 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/auth/activate-mfa": {
+            "post": {
+                "description": "Perform user login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Actions"
+                ],
+                "summary": "Activate MFA For user",
+                "operationId": "activate-code",
+                "parameters": [
+                    {
+                        "description": "User's credentials",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.GetMFADeviceCode"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "String response here",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/confirm-mfa": {
+            "post": {
+                "description": "Perform user login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Actions"
+                ],
+                "summary": "Confirm MFA Code",
+                "operationId": "confirm-code",
+                "parameters": [
+                    {
+                        "description": "User's credentials",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.AttachMfaDeviceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "String response here",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/confirmation-resend": {
+            "post": {
+                "description": "Resend confirmation code to user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Actions"
+                ],
+                "summary": "Resender user's email",
+                "operationId": "resend-confirmation-code",
+                "parameters": [
+                    {
+                        "description": "User's credentials",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.ResendConfirmationCodeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Data"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "description": "Perform user login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Actions"
+                ],
+                "summary": "Authenticate a user",
+                "operationId": "user-login",
+                "parameters": [
+                    {
+                        "description": "User's credentials",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.LoginProcessRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.LoginResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/signin": {
+            "post": {
+                "description": "Complete signin flow and receive accessToken and",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Actions"
+                ],
+                "summary": "Complete signin flow",
+                "operationId": "complete-signin-flow",
+                "parameters": [
+                    {
+                        "description": "User's credentials",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.CompleteMfaSignInRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.CompleteSignInResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/verify-user": {
+            "post": {
+                "description": "Verifying a user email with the code sent to him in the email",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Actions"
+                ],
+                "summary": "Verify a user email",
+                "operationId": "verify-user",
+                "parameters": [
+                    {
+                        "description": "User's credentials",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_auth.VerifyUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/aws/iam/groups": {
+            "get": {
+                "description": "Get a list of AWS IAM groups",
+                "produces": [
+                    "text/plain"
+                ],
+                "summary": "AWS List Groups",
+                "operationId": "aws-list-groups",
+                "responses": {
+                    "200": {
+                        "description": "Group names separated by newline",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new AWS IAM group",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create AWS Group",
+                "operationId": "create-aws-group",
+                "parameters": [
+                    {
+                        "description": "Group details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/iam.CreateGroupRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group"
+                        }
+                    }
+                }
+            }
+        },
+        "/aws/iam/groups/{groupName}": {
+            "get": {
+                "description": "Get AWS IAM group details by group name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get AWS Group by Name",
+                "operationId": "get-aws-group-by-name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Group Name",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing AWS IAM group's name",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update AWS Group",
+                "operationId": "update-aws-group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Group Name",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "New group details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateGroupRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an AWS IAM group by group name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete AWS Group",
+                "operationId": "delete-aws-group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Group Name",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "AWS Group deleted successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/gcp/iam/groups": {
+            "get": {
+                "description": "Retrieves a list of IAM GCP groups using the Google Cloud IAM service.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a list of IAM GCP groups",
+                "operationId": "gcp-list-groups",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing IAM group",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Group",
+                "operationId": "update-group",
+                "parameters": [
+                    {
+                        "description": "Updated group details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/iam.UpdateGroupRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new GCP IAM group.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create GCP Group",
+                "operationId": "create-group",
+                "parameters": [
+                    {
+                        "description": "Group details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/iam.CreateGroupRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/gcp/iam/groups/{groupName}": {
+            "get": {
+                "description": "Get gcp-IAM-group details by group name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get gcp-Group by Name",
+                "operationId": "get-gcp-group-by-name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Group Name",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an IAM group by group name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Group",
+                "operationId": "delete-group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Group Name",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Group deleted successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/gcp/iam/policy": {
+            "get": {
+                "description": "Get IAM policy for a project",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get IAM Policy",
+                "operationId": "gcp-one-policy",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project ID",
+                        "name": "projectID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/cloudresourcemanager.Policy"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Set IAM policy for a project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Set IAM Policy",
+                "operationId": "set-iam-policy",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project ID",
+                        "name": "projectID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "IAM policy details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.SetIamPolicyRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "IAM policy set successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete IAM policy for a project",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete IAM Policy",
+                "operationId": "delete-iam-policy",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project ID",
+                        "name": "projectID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "IAM policy deleted successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/gcp/roles": {
+            "get": {
+                "description": "List all IAM roles the project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List IAM Roles",
+                "operationId": "gcp-list-role",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an IAM role for the project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update an IAM Role",
+                "operationId": "gcp-update-role",
+                "parameters": [
+                    {
+                        "description": "IAM role details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.UpdateRoleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create an IAM role for the project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create an IAM Role",
+                "operationId": "gcp-create-role",
+                "parameters": [
+                    {
+                        "description": "IAM role details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateRoleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an IAM role for the project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete an IAM Role",
+                "operationId": "gcp-delete-role",
+                "parameters": [
+                    {
+                        "description": "IAM role name",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.ActionRoleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "bool"
+                        }
+                    }
+                }
+            }
+        },
+        "/gcp/roles/{name}": {
+            "get": {
+                "description": "Get an IAM role of the project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get an IAM Role",
+                "operationId": "gcp-one-role",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "Verify if the server is running",
+                "tags": [
+                    "Misc"
+                ],
+                "summary": "Health check endpoint for the API",
+                "operationId": "healthcheck",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/policies": {
+            "get": {
+                "description": "Get a list of IAM policies",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List Policies",
+                "operationId": "list-policies",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing IAM policy",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Policy",
+                "operationId": "update-policy",
+                "parameters": [
+                    {
+                        "description": "Updated policy details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdatePolicyRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new IAM policy",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Policy",
+                "operationId": "create-policy",
+                "parameters": [
+                    {
+                        "description": "Policy details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreatePolicyRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/policies/{policyName}": {
+            "get": {
+                "description": "Get IAM policy details by policy name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get Policy by Name",
+                "operationId": "get-policy-by-name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Policy Name",
+                        "name": "policyName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an IAM policy by policy name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Policy",
+                "operationId": "delete-policy",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Policy Name",
+                        "name": "policyName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Policy deleted successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles": {
+            "get": {
+                "description": "Get a list of IAM roles",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List Roles",
+                "operationId": "list-roles",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing IAM role's trust policy",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Role",
+                "operationId": "update-role",
+                "parameters": [
+                    {
+                        "description": "Role Name",
+                        "name": "roleName",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Updated Trust Policy",
+                        "name": "trustPolicy",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateRoleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new IAM role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Role",
+                "operationId": "create-role",
+                "parameters": [
+                    {
+                        "description": "Role Name",
+                        "name": "roleName",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Trust Policy",
+                        "name": "trustPolicy",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreateRoleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/{roleName}": {
+            "get": {
+                "description": "Get IAM role details by role name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get Role by Name",
+                "operationId": "get-role-by-name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Role Name",
+                        "name": "roleName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an IAM role by role name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Role",
+                "operationId": "delete-role",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Role Name",
+                        "name": "roleName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Role deleted successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/service-accounts": {
+            "post": {
+                "description": "Create a new IAM service account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Service Account",
+                "operationId": "create-service-account",
+                "parameters": [
+                    {
+                        "description": "Service account details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateServiceAccountRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/iam.ServiceAccount"
+                        }
+                    }
+                }
+            }
+        },
+        "/service-accounts/{project_id}": {
+            "get": {
+                "description": "Get a list of IAM service accounts",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get Service Accounts",
+                "operationId": "list-service-accounts",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project ID",
+                        "name": "project_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.ServiceAccountDetails"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Get a list of IAM service accounts",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Service Account",
+                "operationId": "list-service-accounts",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project ID",
+                        "name": "project_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_gcp.ServiceAccountDetails"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "Get a list of IAM users",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List Users",
+                "operationId": "list-users",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing IAM user's username",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update User",
+                "operationId": "update-user",
+                "parameters": [
+                    {
+                        "description": "Current Username",
+                        "name": "username",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "New Username",
+                        "name": "newUsername",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "IAM user updated successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new IAM user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create User",
+                "operationId": "create-user",
+                "parameters": [
+                    {
+                        "description": "Username",
+                        "name": "username",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "description": "Get IAM user details by username",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get User by ID",
+                "operationId": "get-user-by-id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an IAM user by username",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete User",
+                "operationId": "delete-user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "IAM user deleted successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "cloudresourcemanager.AuditConfig": {
+            "type": "object",
+            "properties": {
+                "auditLogConfigs": {
+                    "description": "AuditLogConfigs: The configuration for logging of each type of\npermission.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/cloudresourcemanager.AuditLogConfig"
+                    }
+                },
+                "service": {
+                    "description": "Service: Specifies a service that will be enabled for audit logging.\nFor example, `storage.googleapis.com`, `cloudsql.googleapis.com`.\n`allServices` is a special value that covers all services.",
+                    "type": "string"
+                }
+            }
+        },
+        "cloudresourcemanager.AuditLogConfig": {
+            "type": "object",
+            "properties": {
+                "exemptedMembers": {
+                    "description": "ExemptedMembers: Specifies the identities that do not cause logging\nfor this type of permission. Follows the same format of\nBinding.members.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "logType": {
+                    "description": "LogType: The log type that this config enables.\n\nPossible values:\n  \"LOG_TYPE_UNSPECIFIED\" - Default case. Should never be this.\n  \"ADMIN_READ\" - Admin reads. Example: CloudIAM getIamPolicy\n  \"DATA_WRITE\" - Data writes. Example: CloudSQL Users create\n  \"DATA_READ\" - Data reads. Example: CloudSQL Users list",
+                    "type": "string"
+                }
+            }
+        },
+        "cloudresourcemanager.Binding": {
+            "type": "object",
+            "properties": {
+                "condition": {
+                    "description": "Condition: The condition that is associated with this binding. If the\ncondition evaluates to `true`, then this binding applies to the\ncurrent request. If the condition evaluates to `false`, then this\nbinding does not apply to the current request. However, a different\nrole binding might grant the same role to one or more of the\nprincipals in this binding. To learn which resources support\nconditions in their IAM policies, see the IAM documentation\n(https://cloud.google.com/iam/help/conditions/resource-policies).",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/cloudresourcemanager.Expr"
+                        }
+                    ]
+                },
+                "members": {
+                    "description": "Members: Specifies the principals requesting access for a Google\nCloud resource. `members` can have the following values: *\n`allUsers`: A special identifier that represents anyone who is on the\ninternet; with or without a Google account. *\n`allAuthenticatedUsers`: A special identifier that represents anyone\nwho is authenticated with a Google account or a service account. Does\nnot include identities that come from external identity providers\n(IdPs) through identity federation. * `user:{emailid}`: An email\naddress that represents a specific Google account. For example,\n`alice@example.com` . * `serviceAccount:{emailid}`: An email address\nthat represents a Google service account. For example,\n`my-other-app@appspot.gserviceaccount.com`. *\n`serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`:\n An identifier for a Kubernetes service account\n(https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts).\nFor example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`.\n* `group:{emailid}`: An email address that represents a Google group.\nFor example, `admins@example.com`. * `domain:{domain}`: The G Suite\ndomain (primary) that represents all the users of that domain. For\nexample, `google.com` or `example.com`. *\n`deleted:user:{emailid}?uid={uniqueid}`: An email address (plus\nunique identifier) representing a user that has been recently\ndeleted. For example, `alice@example.com?uid=123456789012345678901`.\nIf the user is recovered, this value reverts to `user:{emailid}` and\nthe recovered user retains the role in the binding. *\n`deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address\n(plus unique identifier) representing a service account that has been\nrecently deleted. For example,\n`my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\nIf the service account is undeleted, this value reverts to\n`serviceAccount:{emailid}` and the undeleted service account retains\nthe role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`:\nAn email address (plus unique identifier) representing a Google group\nthat has been recently deleted. For example,\n`admins@example.com?uid=123456789012345678901`. If the group is\nrecovered, this value reverts to `group:{emailid}` and the recovered\ngroup retains the role in the binding.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "role": {
+                    "description": "Role: Role that is assigned to the list of `members`, or principals.\nFor example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+                    "type": "string"
+                }
+            }
+        },
+        "cloudresourcemanager.Expr": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "Description: Optional. Description of the expression. This is a\nlonger text which describes the expression, e.g. when hovered over it\nin a UI.",
+                    "type": "string"
+                },
+                "expression": {
+                    "description": "Expression: Textual representation of an expression in Common\nExpression Language syntax.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "Location: Optional. String indicating the location of the expression\nfor error reporting, e.g. a file name and a position in the file.",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Title: Optional. Title for the expression, i.e. a short string\ndescribing its purpose. This can be used e.g. in UIs which allow to\nenter the expression.",
+                    "type": "string"
+                }
+            }
+        },
+        "cloudresourcemanager.Policy": {
+            "type": "object",
+            "properties": {
+                "auditConfigs": {
+                    "description": "AuditConfigs: Specifies cloud audit logging configuration for this\npolicy.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/cloudresourcemanager.AuditConfig"
+                    }
+                },
+                "bindings": {
+                    "description": "Bindings: Associates a list of `members`, or principals, with a\n`role`. Optionally, may specify a `condition` that determines how and\nwhen the `bindings` are applied. Each of the `bindings` must contain\nat least one principal. The `bindings` in a `Policy` can refer to up\nto 1,500 principals; up to 250 of these principals can be Google\ngroups. Each occurrence of a principal counts towards these limits.\nFor example, if the `bindings` grant 50 different roles to\n`user:alice@example.com`, and not to any other principal, then you\ncan add another 1,450 principals to the `bindings` in the `Policy`.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/cloudresourcemanager.Binding"
+                    }
+                },
+                "etag": {
+                    "description": "Etag: `etag` is used for optimistic concurrency control as a way to\nhelp prevent simultaneous updates of a policy from overwriting each\nother. It is strongly suggested that systems make use of the `etag`\nin the read-modify-write cycle to perform policy updates in order to\navoid race conditions: An `etag` is returned in the response to\n`getIamPolicy`, and systems are expected to put that etag in the\nrequest to `setIamPolicy` to ensure that their change will be applied\nto the same version of the policy. **Important:** If you use IAM\nConditions, you must include the `etag` field whenever you call\n`setIamPolicy`. If you omit this field, then IAM allows you to\noverwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version: Specifies the format of the policy. Valid values are `0`,\n`1`, and `3`. Requests that specify an invalid value are rejected.\nAny operation that affects conditional role bindings must specify\nversion `3`. This requirement applies to the following operations: *\nGetting a policy that includes a conditional role binding * Adding a\nconditional role binding to a policy * Changing a conditional role\nbinding in a policy * Removing any role binding, with or without a\ncondition, from a policy that includes conditions **Important:** If\nyou use IAM Conditions, you must include the `etag` field whenever\nyou call `setIamPolicy`. If you omit this field, then IAM allows you\nto overwrite a version `3` policy with a version `1` policy, and all\nof the conditions in the version `3` policy are lost. If a policy\ndoes not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset. To learn which\nresources support conditions in their IAM policies, see the IAM\ndocumentation\n(https://cloud.google.com/iam/help/conditions/resource-policies).",
+                    "type": "integer"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_auth.AttachMfaDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "auth_session": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "totp_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_auth.CompleteMfaSignInRequest": {
+            "type": "object",
+            "properties": {
+                "auth_session": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "totp_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_auth.GetMFADeviceCode": {
+            "type": "object",
+            "properties": {
+                "auth_session": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_auth.LoginProcessRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "john.doe@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "11111111"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_auth.ResendConfirmationCodeRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_auth.VerifyUserRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "verification_code"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "verification_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreatePolicyRequest": {
+            "type": "object"
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.CreateRoleRequest": {
+            "type": "object",
+            "required": [
+                "name",
+                "trust_policy"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "trust_policy": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateGroupRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "new_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdatePolicyRequest": {
+            "type": "object"
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_aws_iam.UpdateRoleRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "new_name": {
+                    "type": "string"
+                },
+                "trust_policy": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.ActionRoleRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateRoleRequest": {
+            "type": "object",
+            "required": [
+                "description",
+                "name",
+                "permissions",
+                "title"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "stage": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.CreateServiceAccountRequest": {
+            "type": "object",
+            "required": [
+                "description",
+                "display_name",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "display_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.SetIamPolicyRequest": {
+            "type": "object"
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_requests_gcp_iam.UpdateRoleRequest": {
+            "type": "object",
+            "required": [
+                "description",
+                "name",
+                "permissions",
+                "title"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.Group": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "created_date": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.PolicyDetailResponse": {
+            "type": "object",
+            "properties": {
+                "policy_id": {
+                    "type": "string"
+                },
+                "policy_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.RoleDetailResponse": {
+            "type": "object",
+            "properties": {
+                "role_arn": {
+                    "type": "string"
+                },
+                "role_id": {
+                    "type": "string"
+                },
+                "role_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_responses_aws_iam.UserDetailResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_responses_gcp.GroupDetails": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "members": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_responses_gcp.RoleResponse": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "stage": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitea_pcp-inariam_inariam_core_services_api_responses_gcp.ServiceAccountDetails": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "project_id": {
+                    "type": "string"
+                },
+                "uniqueId": {
+                    "type": "string"
+                }
+            }
+        },
+        "iam.CreateGroupRequest": {
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "iam.ServiceAccount": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "Description: Optional. A user-specified, human-readable description\nof the service account. The maximum length is 256 UTF-8 bytes.",
+                    "type": "string"
+                },
+                "disabled": {
+                    "description": "Disabled: Output only. Whether the service account is disabled.",
+                    "type": "boolean"
+                },
+                "displayName": {
+                    "description": "DisplayName: Optional. A user-specified, human-readable name for the\nservice account. The maximum length is 100 UTF-8 bytes.",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "Email: Output only. The email address of the service account.",
+                    "type": "string"
+                },
+                "etag": {
+                    "description": "Etag: Deprecated. Do not use.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name: The resource name of the service account. Use one of the\nfollowing formats: *\n`projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}` *\n`projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}` As an\nalternative, you can use the `-` wildcard character instead of the\nproject ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS}` *\n`projects/-/serviceAccounts/{UNIQUE_ID}` When possible, avoid using\nthe `-` wildcard character, because it can cause response messages to\ncontain misleading error codes. For example, if you try to access the\nservice account `projects/-/serviceAccounts/fake@example.com`, which\ndoes not exist, the response contains an HTTP `403 Forbidden` error\ninstead of a `404 Not Found` error.",
+                    "type": "string"
+                },
+                "oauth2ClientId": {
+                    "description": "Oauth2ClientId: Output only. The OAuth 2.0 client ID for the service\naccount.",
+                    "type": "string"
+                },
+                "projectId": {
+                    "description": "ProjectId: Output only. The ID of the project that owns the service\naccount.",
+                    "type": "string"
+                },
+                "uniqueId": {
+                    "description": "UniqueId: Output only. The unique, stable numeric ID for the service\naccount. Each service account retains its unique ID even if you\ndelete the service account. For example, if you delete a service\naccount, then create a new service account with the same name, the\nnew service account has a different unique ID than the deleted\nservice account.",
+                    "type": "string"
+                }
+            }
+        },
+        "iam.UpdateGroupRequest": {
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses.CompleteSignInResponse": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses.Data": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses.Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "auth_session": {
+                    "type": "string"
+                },
+                "challenge_name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,242 @@
+[
+  {
+    "method": "POST",
+    "path": "/auth/activate-mfa",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers.(*AuthHandler).GetMFADeviceCode-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/gcp/iam/roles/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).CreateIamRole-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/gcp/iam/groups/:name",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).GetGroup-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/gcp/iam/groups/:name",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).DeleteGroup-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/gcp/iam/service-accounts/:name/disable",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).DisableServiceAccount-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/gcp/iam/policies/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).GetPolicy-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/swagger/*",
+    "name": "github.com/swaggo/echo-swagger.EchoWrapHandler.func1"
+  },
+  {
+    "method": "PUT",
+    "path": "/aws/iam/policies/:arn",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).UpdatePolicy-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/groups/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).GetGroup-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/users/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).GetUser-fm"
+  },
+  {
+    "method": "PUT",
+    "path": "/aws/iam/users/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).UpdateUser-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/gcp/iam/roles/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).ListRoles-fm"
+  },
+  {
+    "method": "PUT",
+    "path": "/gcp/iam/roles/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).UpdateIamRole-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/confirm-mfa",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers.(*AuthHandler).ConfirmMFACode-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/confirmation-resend",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers.(*AuthHandler).ResendConfirmatioNEmail-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/roles/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).GetRole-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/policies/:arn",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).GetPolicy-fm"
+  },
+  {
+    "method": "PUT",
+    "path": "/gcp/iam/groups/:name",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).UpdateGroup-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/gcp/iam/service-accounts/:name/enable",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).EnableServiceAccount-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/gcp/iam/service-accounts/:name",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).DeleteServiceAccount-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/gcp/iam/policies/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).DeletePolicy-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/aws/iam/groups/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).CreateGroup-fm"
+  },
+  {
+    "method": "PUT",
+    "path": "/aws/iam/groups/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).UpdateGroup-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers.(*AuthHandler).StartSignInProcess-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/groups/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).ListGroups-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/aws/iam/users/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).CreateUser-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/aws/iam/users/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).DeleteUser-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/aws/iam/roles/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).CreateRole-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/policies/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).ListPolicies-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/routes.ConfigureRoutes.func2"
+  },
+  {
+    "method": "GET",
+    "path": "/health",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers.HealthCheck"
+  },
+  {
+    "method": "POST",
+    "path": "/gcp/iam/service-accounts/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).CreateServiceAccount-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/aws/iam/policies/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).CreatePolicy-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/gcp/iam/groups/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).CreateGroup-fm"
+  },
+  {
+    "method": "PUT",
+    "path": "/aws/iam/roles/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).UpdateRole-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/gcp/iam/groups/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).ListGroups-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/gcp/iam/roles/:name",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).GetRole-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/verify-user",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers.(*AuthHandler).VerifyUser-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/users/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).ListUsers-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/aws/iam/roles/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).ListRoles-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/aws/iam/policies/:arn",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).DeletePolicy-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/gcp/iam/service-accounts/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).ListServiceAccounts-fm"
+  },
+  {
+    "method": "GET",
+    "path": "/gcp/iam/service-accounts/:name",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).GetServiceAccount-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/complete-signin",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers.(*AuthHandler).CompleteSignIn-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/aws/iam/groups/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).DeleteGroup-fm"
+  },
+  {
+    "method": "POST",
+    "path": "/gcp/iam/policies/",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).SetPolicy-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/aws/iam/roles/:id",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/aws.(*Handler).DeleteRole-fm"
+  },
+  {
+    "method": "DELETE",
+    "path": "/gcp/iam/roles/:name",
+    "name": "gitea/pcp-inariam/inariam/core/services/api/handlers/cloud/gcp.(*Handler).DeleteIamRole-fm"
+  }
+]
